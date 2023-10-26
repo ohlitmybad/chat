@@ -158,10 +158,6 @@ body.dark-mode .dark-mode-toggle .toggle-icon::before {
 
 
 	
-	
-
-
-	
 </head>
 
 
@@ -185,7 +181,43 @@ body.dark-mode .dark-mode-toggle .toggle-icon::before {
     <iframe id="fullbackIframe" src="https://app-xbzgdywnnrx7urnm424daz.streamlit.app/" height="850"
   style="width:100%;border:none;"></iframe>
 
+<script>
+  // JavaScript to handle the dropdown selection and reload the iframe
+  const positionSelect = document.getElementById('positionSelect');
+  const iframes = document.getElementsByTagName('iframe');
 
+  // Flag to track whether the iframe has been loaded before for each position
+  const iframeLoaded = {
+    goalkeeper: false,
+    centreback: false,
+    fullback: false,
+  };
+
+  positionSelect.addEventListener('change', function () {
+    const selectedPosition = this.value;
+
+    // Hide all iframes
+    for (const iframe of iframes) {
+      iframe.style.display = 'none';
+    }
+
+    // Show and reload the selected iframe (if it hasn't been loaded before)
+    if (selectedPosition) {
+      const selectedIframes = document.querySelectorAll(`#${selectedPosition}Iframe`);
+      for (const iframe of selectedIframes) {
+        iframe.style.display = 'block';
+
+        // Check if the iframe has been loaded before
+        if (!iframeLoaded[selectedPosition]) {
+          // If not loaded before, set the flag to true and reload the iframe
+          iframeLoaded[selectedPosition] = true;
+          iframe.src = iframe.src; // This line will reload the iframe
+        }
+      }
+    }
+  });
+
+</script>
 
 </body>
 </html>
