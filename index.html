@@ -74,16 +74,15 @@ header a {
 		#positionSelect {
     display: block;
     margin: 0 auto;
-left : 66%;
+left : 73%;
 width: 200px; /* Adjust the width as needed */
-    font-size: 19px;
-    padding: 13px;
+    font-size: 15px;
+    padding: 10px;
     border: none;
     background-color: #3498db; /* Button background color */
     color: #fff; /* Button text color */
     border-radius: 12px; /* Adjust to make the button rounder */
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
 }
 
 
@@ -117,14 +116,14 @@ width: 200px; /* Adjust the width as needed */
 <br>
 	<label for="positionSelect"></label>
     <select id="positionSelect">
-        <option value="goalkeeper">Guide</option>
-        <option value="centreback">Chat</option>
-        <option value="fullback">Chat Viz</option>
+        <option value="goalkeeper">Chat</option>
+        <option value="centreback">Viz Chat</option>
+        <option value="fullback">Guide</option>
     </select>
 <br><br>
-    <iframe id="goalkeeperIframe" src="https://datamb.football/chatguide" height="850" style="width:100%;border:none;"></iframe>
-    <iframe id="centrebackIframe" src="https://app-xbzgdywnnrx7urnm424daz.streamlit.app/?embed=true" height="850" style="width:100%; border: none !important;"></iframe>
-    <iframe id="fullbackIframe" src="https://talkdataviz-2ei57nyderiappuh2vkgdbb.streamlit.app/?embed=true" height="850" style="width:100%; border: none !important;"></iframe>
+    <iframe id="goalkeeperIframe" src="https://app-xbzgdywnnrx7urnm424daz.streamlit.app/?embed=true" height="850" style="width:100%;border:none;"></iframe>
+    <iframe id="centrebackIframe" src="https://talkdataviz-2ei57nyderiappuh2vkgdbb.streamlit.app/?embed=true" height="850" style="width:100%; border: none !important;"></iframe>
+    <iframe id="fullbackIframe" src="https://datamb.football/chatguide" height="850" style="width:100%; border: none !important;"></iframe>
 
     <script>
         const positionSelect = document.getElementById("positionSelect");
