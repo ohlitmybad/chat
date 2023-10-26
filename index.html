@@ -169,15 +169,13 @@ body.dark-mode .dark-mode-toggle .toggle-icon::before {
         <option value="goalkeeper">Guide</option>
         <option value="centreback">Chat</option>
         <option value="fullback">Chat Viz</option>
-       
-
     </select>
 
-<iframe id="goalkeeperIframe" src="https://datamb.football/proguide" height="850" style="width:100%;border:none;"></iframe>
-<iframe id="centrebackIframe" style="display: none;" src="https://talkdataviz-2ei57nyderiappuh2vkgdbb.streamlit.app/?embed=true" height="850" style="width:100%;border:none;"></iframe>
-<iframe id="fullbackIframe" style="display: none;" src="https://app-xbzgdywnnrx7urnm424daz.streamlit.app/?embed=true" height="850" style="width:100%;border:none;"></iframe>
+    <iframe id="goalkeeperIframe" src="https://datamb.football/proguide" height="850" style="width:100%;border:none;"></iframe>
+    <iframe id="centrebackIframe" src="https://talkdataviz-2ei57nyderiappuh2vkgdbb.streamlit.app/?embed=true" height="850" style="width:100%;border:none;"></iframe>
+    <iframe id="fullbackIframe" src="https://app-xbzgdywnnrx7urnm424daz.streamlit.app/?embed=true" height="850" style="width:100%;border:none;"></iframe>
 
-	  <script>
+    <script>
         const positionSelect = document.getElementById("positionSelect");
         const goalkeeperIframe = document.getElementById("goalkeeperIframe");
         const centrebackIframe = document.getElementById("centrebackIframe");
