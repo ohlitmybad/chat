@@ -126,40 +126,47 @@ width: 200px; /* Adjust the width as needed */
     <iframe id="fullbackIframe" src="https://datamb.football/chatguide" height="850" style="width:100%; border: none !important;"></iframe>
 
     <script>
-        const positionSelect = document.getElementById("positionSelect");
-        const goalkeeperIframe = document.getElementById("goalkeeperIframe");
-        const centrebackIframe = document.getElementById("centrebackIframe");
-        const fullbackIframe = document.getElementById("fullbackIframe");
+  <script>
+    const positionSelect = document.getElementById("positionSelect");
+    const goalkeeperIframe = document.getElementById("goalkeeperIframe");
+    const centrebackIframe = document.getElementById("centrebackIframe");
+    const fullbackIframe = document.getElementById("fullbackIframe");
 
-        // Function to hide all iframes
-        function hideAllIframes() {
-            goalkeeperIframe.style.display = "none";
+    // Function to hide all iframes except the first one
+    function hideAllIframesExceptFirst() {
+        goalkeeperIframe.style.display = "block";
+        centrebackIframe.style.display = "none";
+        fullbackIframe.style.display = "none";
+    }
+
+    // Function to display the selected iframe
+    function displaySelectedIframe() {
+        const selectedOption = positionSelect.value;
+
+        if (selectedOption === "goalkeeper") {
+            goalkeeperIframe.style.display = "block";
             centrebackIframe.style.display = "none";
             fullbackIframe.style.display = "none";
+        } else if (selectedOption === "centreback") {
+            goalkeeperIframe.style.display = "none";
+            centrebackIframe.style.display = "block";
+            fullbackIframe.style.display = "none";
+        } else if (selectedOption === "fullback") {
+            goalkeeperIframe.style.display = "none";
+            centrebackIframe.style.display = "none";
+            fullbackIframe.style.display = "block";
         }
+    }
 
-        // Function to display the selected iframe
-        function displaySelectedIframe() {
-            const selectedOption = positionSelect.value;
+    // Add an event listener to the dropdown menu
+    positionSelect.addEventListener("change", function () {
+        // Display the selected iframe
+        displaySelectedIframe();
+    });
 
-            if (selectedOption === "goalkeeper") {
-                goalkeeperIframe.style.display = "block";
-            } else if (selectedOption === "centreback") {
-                centrebackIframe.style.display = "block";
-            } else if (selectedOption === "fullback") {
-                fullbackIframe.style.display = "block";
-            }
-        }
-
-        // Add an event listener to the dropdown menu
-        positionSelect.addEventListener("change", function () {
-            // Hide all iframes
-            hideAllIframes();
-            // Display the selected iframe
-            displaySelectedIframe();
-        });
-
-
+    // Hide all iframes except the first one initially
+    hideAllIframesExceptFirst();
+</script>
     </script>
 
 </body>
