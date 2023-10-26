@@ -173,18 +173,32 @@ body.dark-mode .dark-mode-toggle .toggle-icon::before {
 
     </select>
 
-<iframe id="goalkeeperIframe" src="https://datamb.football/proguide"></iframe>
-<iframe id="centrebackIframe" style="display: none;" src="https://talkdataviz-2ei57nyderiappuh2vkgdbb.streamlit.app/" height="850" style="width:100%;border:none;"></iframe>
-<iframe id="fullbackIframe" style="display: none;" src="https://app-xbzgdywnnrx7urnm424daz.streamlit.app/" height="850" style="width:100%;border:none;"></iframe>
+<iframe id="goalkeeperIframe" src="https://datamb.football/proguide" height="850" style="width:100%;border:none;"></iframe>
+<iframe id="centrebackIframe" style="display: none;" src="https://talkdataviz-2ei57nyderiappuh2vkgdbb.streamlit.app/?embed=true" height="850" style="width:100%;border:none;"></iframe>
+<iframe id="fullbackIframe" style="display: none;" src="https://app-xbzgdywnnrx7urnm424daz.streamlit.app/?embed=true" height="850" style="width:100%;border:none;"></iframe>
+
 
 <script>
-  // JavaScript to show the first iframe and hide the others
+  const positionSelect = document.getElementById('positionSelect');
   const iframes = document.getElementsByTagName('iframe');
 
-  // Hide all iframes except the first one
-  for (let i = 1; i < iframes.length; i++) {
-    iframes[i].style.display = 'none';
-  }
+  positionSelect.addEventListener('change', function () {
+    const selectedIframeId = this.value;
+
+    // Hide all iframes
+    for (const iframe of iframes) {
+      iframe.style.display = 'none';
+    }
+
+    // Show the selected iframe
+    const selectedIframe = document.getElementById(selectedIframeId);
+    selectedIframe.style.display = 'block';
+  });
+
+  // Select the default iframe (e.g., goalkeeper) when the page loads
+  const defaultIframeId = 'goalkeeperIframe';
+  document.getElementById(defaultIframeId).style.display = 'block';
+  positionSelect.value = defaultIframeId;
 </script>
 
 </body>
