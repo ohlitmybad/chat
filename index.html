@@ -177,29 +177,42 @@ body.dark-mode .dark-mode-toggle .toggle-icon::before {
 <iframe id="centrebackIframe" style="display: none;" src="https://talkdataviz-2ei57nyderiappuh2vkgdbb.streamlit.app/?embed=true" height="850" style="width:100%;border:none;"></iframe>
 <iframe id="fullbackIframe" style="display: none;" src="https://app-xbzgdywnnrx7urnm424daz.streamlit.app/?embed=true" height="850" style="width:100%;border:none;"></iframe>
 
+	    <script>
+        const positionSelect = document.getElementById("positionSelect");
+        const goalkeeperIframe = document.getElementById("goalkeeperIframe");
+        const centrebackIframe = document.getElementById("centrebackIframe");
+        const fullbackIframe = document.getElementById("fullbackIframe");
 
-<script>
-  const positionSelect = document.getElementById('positionSelect');
-  const iframes = document.getElementsByTagName('iframe');
+        // Function to display the "Guide" iframe by default
+        function displayDefaultIframe() {
+            goalkeeperIframe.style.display = "block";
+            centrebackIframe.style.display = "none";
+            fullbackIframe.style.display = "none";
+        }
 
-  positionSelect.addEventListener('change', function () {
-    const selectedIframeId = this.value;
+        // Add an event listener to the dropdown menu
+        positionSelect.addEventListener("change", function () {
+            const selectedOption = positionSelect.value;
 
-    // Hide all iframes
-    for (const iframe of iframes) {
-      iframe.style.display = 'none';
-    }
+            // Hide all iframes
+            goalkeeperIframe.style.display = "none";
+            centrebackIframe.style display = "none";
+            fullbackIframe.style.display = "none";
 
-    // Show the selected iframe
-    const selectedIframe = document.getElementById(selectedIframeId);
-    selectedIframe.style.display = 'block';
-  });
+            // Show the selected iframe
+            if (selectedOption === "goalkeeper") {
+                goalkeeperIframe.style.display = "block";
+            } else if (selectedOption === "centreback") {
+                centrebackIframe.style.display = "block";
+            } else if (selectedOption === "fullback") {
+                fullbackIframe.style.display = "block";
+            }
+        });
 
-  // Select the default iframe (e.g., goalkeeper) when the page loads
-  const defaultIframeId = 'goalkeeperIframe';
-  document.getElementById(defaultIframeId).style.display = 'block';
-  positionSelect.value = defaultIframeId;
-</script>
+        // Call the function to display the "Guide" iframe by default
+        displayDefaultIframe();
+    </script>
+	
 
 </body>
 </html>
