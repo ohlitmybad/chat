@@ -1,9 +1,17 @@
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, user-scalable=no"">
+	<meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@DataMB_">
+  <meta name="twitter:title" content="DataMB Pro">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="https://i.imgur.com/p43wTxg.png">
+  <meta property="og:image" content="https://i.imgur.com/p43wTxg.png">
+	<meta name="robots" content="noindex">
+
+<title>DataMB Pro</title>
 	
 	<style>
        body, html {
@@ -122,9 +130,26 @@ width: 200px; /* Adjust the width as needed */
         <option value="fullback">Guide</option>
     </select>
 <br><br>
-    <iframe id="goalkeeperIframe" src="https://app-xbzgdywnnrx7urnm424daz.streamlit.app/?embed=true" height="850" style="width:100%;border:none;"></iframe>
-    <iframe id="centrebackIframe" src="https://talkdataviz-2ei57nyderiappuh2vkgdbb.streamlit.app/?embed=true" height="850" style="width:100%; border: none !important;"></iframe>
-    <iframe id="fullbackIframe" src="https://datamb.football/chatguide" height="850" style="width:100%; border: none !important;"></iframe>
+<!-- HTML -->
+<iframe id="goalkeeperIframe" data-src="aHR0cHM6Ly9hcHAteGJ6Z2R5d25ucng3dXJubTQyNGRhei5zdHJlYW1saXQuYXBwLz9lbWJlZD10cnVl" height="850" style="width:100%;border:none;"></iframe>
+<iframe id="centrebackIframe" data-src="aHR0cHM6Ly90YWxrZGF0YXZpei0yZWk1N255ZGVyaWFwcHVoMnZrZ2RiYi5zdHJlYW1saXQuYXBwLz9lbWJlZD10cnVl" height="850" style="width:100%;border:none;"></iframe>
+<iframe id="fullbackIframe" data-src="aHR0cHM6Ly9kYXRhbWIuZm9vdGJhbGwvY2hhdGd1aWRl" height="850" style="width:100%;border:none;"></iframe>
+
+<script>
+  // Function to decode and set the source for iframes
+  function decodeAndSetIframeSource() {
+    const iframes = document.querySelectorAll('iframe');
+    iframes.forEach((iframe) => {
+      const encodedSrc = iframe.getAttribute('data-src');
+      const decodedSrc = atob(encodedSrc); // Decode Base64
+      iframe.src = decodedSrc; // Set the source
+    });
+  }
+
+  // Call the function to decode and set iframe sources
+  decodeAndSetIframeSource();
+</script>
+
 
  <script>
     const positionSelect = document.getElementById("positionSelect");
