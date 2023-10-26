@@ -10,10 +10,7 @@
             margin: 0;
             padding: 0;
         }
-    #centrebackIframe,
-    #fullbackIframe {
-        display: none;
-    }
+
 
 
 
@@ -128,16 +125,15 @@ width: 200px; /* Adjust the width as needed */
     <iframe id="centrebackIframe" src="https://talkdataviz-2ei57nyderiappuh2vkgdbb.streamlit.app/?embed=true" height="850" style="width:100%; border: none !important;"></iframe>
     <iframe id="fullbackIframe" src="https://datamb.football/chatguide" height="850" style="width:100%; border: none !important;"></iframe>
 
-    <script>
-  <script>
+ <script>
     const positionSelect = document.getElementById("positionSelect");
     const goalkeeperIframe = document.getElementById("goalkeeperIframe");
     const centrebackIframe = document.getElementById("centrebackIframe");
     const fullbackIframe = document.getElementById("fullbackIframe");
 
-    // Function to hide all iframes except the first one
-    function hideAllIframesExceptFirst() {
-        goalkeeperIframe.style.display = "block";
+    // Function to hide all iframes
+    function hideAllIframes() {
+        goalkeeperIframe.style.display = "none";
         centrebackIframe.style.display = "none";
         fullbackIframe.style.display = "none";
     }
@@ -147,16 +143,13 @@ width: 200px; /* Adjust the width as needed */
         const selectedOption = positionSelect.value;
 
         if (selectedOption === "goalkeeper") {
+            hideAllIframes();
             goalkeeperIframe.style.display = "block";
-            centrebackIframe.style.display = "none";
-            fullbackIframe.style.display = "none";
         } else if (selectedOption === "centreback") {
-            goalkeeperIframe.style.display = "none";
+            hideAllIframes();
             centrebackIframe.style.display = "block";
-            fullbackIframe.style.display = "none";
         } else if (selectedOption === "fullback") {
-            goalkeeperIframe.style.display = "none";
-            centrebackIframe.style.display = "none";
+            hideAllIframes();
             fullbackIframe.style.display = "block";
         }
     }
@@ -168,9 +161,8 @@ width: 200px; /* Adjust the width as needed */
     });
 
     // Hide all iframes except the first one initially
-    hideAllIframesExceptFirst();
+    hideAllIframes();
+    goalkeeperIframe.style.display = "block";
 </script>
-    </script>
-
 </body>
 </html>
