@@ -4,62 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="robots" content="noindex">
-    <style>
-        #content h1 {
-            display: none; /* Hide the welcome text */
-        }
-       body.dark-mode {
-            background-color: #0e0f0f !important;
-        }
-		        body {
-            background-color: #f5f7fa !important;
-        }
-        
+  
+  <style>
+    #content h1 {
+        display: none; /* Hide the welcome text */
+    }
+   body.dark-mode {
+        background-color: #0e0f0f !important;
+    }
+            body {
+        background-color: #f5f7fa !important;
+    }
+    
 #SFctr {
-	font-family: Arial, Helvetica, sans-serif !important;
-	color: #000000 !important;
-  margin-left: 13.2px;
-  top: -8px;
+font-family: Arial, Helvetica, sans-serif !important;
+color: #000000 !important;
+margin-left: 13.2px;
+top: -8px;
 }
 #SFusrlogpst strong:first-child {
-  font-size: 0px;
+font-size: 0px;
 }
 #SFusrlogpst input[type="checkbox"],
 #SFusrlogpwd input[type="checkbox"],
 #SFusrlogpst i,
 #SFusrlogpwd i {
-  display: none !important;
+display: none !important;
 }
 #SFctr .SFfrm input[type="text"],
 #SFctr .SFfrm input[type="password"],
 #SFctr .SFfrm button {
-  border-radius: 6px;
+border-radius: 6px;
 }
 #SFusrlogpwd strong {
-  visibility: hidden; /* Hide the original text */
-  position: relative;
+visibility: hidden; /* Hide the original text */
+position: relative;
 }
 #SFusrlogpwd strong::after {
-  content: "Forgot Password?"; /* Add the new text */
+  content: "Forgot Password?";
   visibility: visible;
   position: absolute;
   font-size: 12px;
   font-weight: 400;
   left: 100px;
-  white-space: nowrap; /* Prevent text from wrapping */
+  white-space: nowrap;
   top: 13px;
 }
-    body.dark-mode #SFctr {
-        color: #ffffff !important
-        }
-        
-        
-        #SFctr input {
-            background-color: #ffffff !important;
-        color:#000000 !important;
-        border: 1px solid #c2c2c2 !important
-        }
-    </style>
+
+body.dark-mode #SFctr {
+    color: #ffffff !important
+    }
+    
+    
+    #SFctr input {
+        background-color: #ffffff !important;
+    color:#000000 !important;
+    border: 1px solid #c2c2c2 !important
+    }
+</style>
 </head>
 <body>
     <script type="text/javascript">document.body.style.visibility="hidden";</script>
@@ -71,22 +73,45 @@
         <h1>Welcome!</h1>
     </div>
     <script type="text/javascript">
-        // Check if the welcome message is visible (meaning successful login)
-        function checkForWelcomeMessage() {
-            const contentDiv = document.getElementById('content');
-            if (contentDiv && contentDiv.style.display !== 'none' && 
-                document.body.style.visibility !== 'hidden') {
-                // Welcome message is visible, redirect after 2 seconds
-                setTimeout(function() {
-window.location.href = "https://datamb.football/ai/";
-                }, 1);
-            } else {
-                setTimeout(checkForWelcomeMessage, 1);
+        // Redirect once the welcome message becomes visible (successful login).
+        // Driven by a MutationObserver with a slow interval as a safety net; the
+        // previous version re-checked every 1ms, which pinned a CPU core.
+        (function () {
+            var redirected = false;
+            var observer = null;
+            var poll = null;
+
+            function isLoggedIn() {
+                var contentDiv = document.getElementById('content');
+                return !!contentDiv &&
+                    contentDiv.style.display !== 'none' &&
+                    document.body.style.visibility !== 'hidden';
             }
-        }
-        
-        // Start checking after page loads
-        window.addEventListener('load', checkForWelcomeMessage);
+
+            function check() {
+                if (redirected || !isLoggedIn()) return;
+                redirected = true;
+                if (observer) observer.disconnect();
+                clearInterval(poll);
+                window.location.href = "https://datamb.football/ai/";
+            }
+
+            window.addEventListener('load', function () {
+                if (redirected) return;
+                check();
+                if (redirected) return;
+
+                observer = new MutationObserver(check);
+                observer.observe(document.documentElement, {
+                    attributes: true,
+                    attributeFilter: ['style'],
+                    childList: true,
+                    subtree: true
+                });
+
+                poll = setInterval(check, 250);
+            });
+        })();
  
     document.addEventListener('DOMContentLoaded', function() {
         const storedDarkMode = localStorage.getItem("darkMode");
